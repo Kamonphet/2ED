@@ -14,6 +14,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 	<link rel="stylesheet" href="../CSS/Login.css">
 	<link href="../CSS/style_l.css" rel="stylesheet">
 	
+	
 </head>
 <body class="font-sans">
 	<div class="animation-area"style="padding-top: 10%;">
@@ -27,6 +28,11 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 		</ul>
 
 		<div class="container">
+			<?php 
+				if($_GET['msg']){
+                	echo '<p style="color:red">ชื่อ หรือ Password ไม่ถูกต้อง ใส่ใหม่ซะ!!!</p>';
+            	};
+			?>
 			<form action="./checklogin.php" method="POST" id="login">
 			  <div class="title">เข้าสู่ระบบ</div>
 			  <div class="input-box underline">

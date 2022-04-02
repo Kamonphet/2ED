@@ -21,7 +21,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
       <div class="bg-white shadow sm:rounded-lg m-3" style="height: max-content">
         <div class="px-4 py-5 sm:px-6">
           <h1 class="text-2xl leading-6 font-medium text-gray-900">Welcome</h1>
-          <p class="mt-1 max-w-2xl text-sm text-gray-500"><?php echo "{$_SESSION['Sname']} {$_SESSION['Lname']}"?></p>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500"><?php echo "{$_SESSION['Sname']} {$_SESSION['Lname']} {$_SESSION['ST_id']}"?></p>
         </div>
         <div class="border-t border-gray-200">
           <dl>
@@ -53,7 +53,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
             <div class="mt-6 space-y-12 lg:space-y-0 lg:grid md:grid-cols-3 lg:gap-x-6">
               <div class="group relative">
                 <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                  <img src="../img/1.jpg" alt="">
+                  <img src="../img/10.JPG" alt="">
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                   <a href="../sub-index/form1.php">
@@ -66,7 +66,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
 
               <div class="group relative">
                 <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                  <img src="../img/2.png" alt="">
+                  <img src="../img/11.JPG" alt="">
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                   <a href="#">
@@ -79,7 +79,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
 
               <div class="group relative">
                 <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                  <img src="../img/3.jpg" alt="">
+                  <img src="../img/12.JPG" alt="">
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                   <a href="#">
@@ -94,7 +94,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
             <div class="mt-6 space-y-12 lg:space-y-0 lg:grid md:grid-cols-3 lg:gap-x-6">
               <div class="group relative">
                 <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                  <img src="../img/4.jpg" alt="">
+                  <img src="../img/7.JPG" alt="">
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                   <a href="./formdemo.php">
@@ -107,7 +107,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
 
               <div class="group relative">
                 <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                  <img src="../img/5.jpg" alt="">
+                  <img src="../img/8.JPG" alt="">
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                   <a href="#">
@@ -120,7 +120,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
 
               <div class="group relative">
                 <div class="relative w-full h-80 bg-white rounded-lg overflow-hidden group-hover:opacity-75 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                  <img src="../img/6.jpg" alt="">  
+                  <img src="../img/9.JPG" alt="">  
                 </div>
                 <h3 class="mt-6 text-sm text-gray-500">
                   <a href="../sub-index/form-request.php">

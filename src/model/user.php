@@ -22,6 +22,7 @@ class user extends Db {
 
         if(password_verify($user['password'], $userDB['password'])){
             session_start();
+            $_SESSION['ST_id'] = $userDB['ST_id'];
             $_SESSION['Sname'] = $userDB['Sname'];
             $_SESSION['Lname'] = $userDB['Lname'];
             $_SESSION['role'] = $userDB['role'];
