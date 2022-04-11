@@ -84,50 +84,45 @@ if ($_REQUEST['action']=='edit') {
                         <div class="shadow overflow-hidden sm:rounded-md">
                             <div class="px-4 py-5 bg-white sm:p-6 grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-2">
-                                    
-                                            <label for='' class='block text-sm font-medium text-gray-700'>ประเภทคำร้องแจ้งการใช้งาน</label>
-                                            <select name='R_type' id='R_type' class='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' required >
-                                                <option value=''>---</option>
-                                                <?php
-                                                    
-                                                    $requesttObj = new Trequest();
-                                                    $requestt = $requesttObj->gettRequest();
-                                                    foreach($requestt as $reqq){
-                                                        $selected = ($reqq['R_type'] == $request['R_type']) ? "selected" : "";
-                                                        echo "
-                                                            <option value='{$reqq['R_type']}' {$selected}> {$reqq['Type_name']}</option>
-                                                        ";
-                                                    }
-                                                
-                                                
-                                                ?>
-                                            </select>
-  
+                                    <label for='' class='block text-sm font-medium text-gray-700'>ประเภทคำร้องแจ้งการใช้งาน</label>
+                                    <select name='R_type' id='R_type' class='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' required >
+                                        <option value=''>---</option>
+                                        <?php       
+                                            $requesttObj = new Trequest();
+                                            $requestt = $requesttObj->gettRequest();
+                                            foreach($requestt as $reqq){
+                                                $selected = ($reqq['R_type'] == $request['R_type']) ? "selected" : "";
+                                                echo "
+                                                    <option value='{$reqq['R_type']}' {$selected}> {$reqq['Type_name']}</option>
+                                                ";
+                                            }  
+                                            ?>
+                                    </select>
                                 </div>
                                 <div class="col-span-6 sm:col-span-1">
-                                    <label for="" class="block text-sm font-medium text-gray-700">Date</label>
+                                    <label for="" class="block text-md font-medium text-gray-700">Date</label>
                                     <input type="date" name="R_date" id="R_date"class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
                                     value="<?php echo $request['R_date'];?>" required>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-2">
-                                    <label for="ST_id" class="block text-sm font-medium text-gray-700">รหัสนิสิต</label>
+                                    <label for="ST_id" class="block text-md font-medium text-gray-700">รหัสนิสิต</label>
                                     <input type="text" name="ST_id" id="ST_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" 
                                     value="<?php echo $_SESSION['ST_id'];?>" readonly>
                                 </div>
                                                                   
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
+                                    <label for="first-name" class="block text-md font-medium text-gray-700">First name</label>
                                     <input type="text" name="" id="Sname" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="<?php echo $_SESSION['Sname']?>" readonly></input>
                                 </div>
                                                    
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="last-name" class="block text-sm font-medium text-gray-700">Last name</label>
+                                    <label for="last-name" class="block text-md font-medium text-gray-700">Last name</label>
                                     <input type="text" name="" id="Lname" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="<?php echo $_SESSION['Lname']?>" readonly>
                                 </div>
                                                     
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="about" class="block text-sm font-medium text-gray-700">รายละเอียดแจ้งคำร้องการใช้งาน</label>
+                                    <label for="about" class="block text-md font-medium text-gray-700">รายละเอียดแจ้งคำร้องการใช้งาน</label>
                                     <div class="mt-2">
                                         <textarea id="R_detail" name="R_detail" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="กรอกรายละเอียด" 
                                         required><?php echo $request['R_detail']?></textarea>

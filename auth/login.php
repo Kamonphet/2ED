@@ -48,9 +48,9 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 			  </div>
 			</form>
 
-			<div class=" text-center">
+			<!-- <div class=" text-center">
                 <a href="register.php">หากยังไม่ได้ลงทะเบียน</a>
-            </div>
+            </div> -->
 		</div>
 	</div>
 </body>

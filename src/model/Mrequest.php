@@ -9,7 +9,6 @@ class Mrequest extends Db {
     //รับค่าข้อมูลมาจากฐานข้อมูล
     public function getRequest($st_id){
         //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
-        echo $st_id;
         $sql ="
             SELECT 
                 request.R_id,

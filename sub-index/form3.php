@@ -1,61 +1,17 @@
-<?php 
-error_reporting(E_ALL ^ E_WARNING); 
-require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
-require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
-
-use App\model\user;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แบบฟอร์มรับสมัครเข้าเอกคู่ที่ 2 รอบที่ 1</title>
+    <title>แบบฟอร์มรับสมัครเข้าเอกคู่ที่ 2 รอบที่ 3</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-sky-100">
-  <?php require $_SERVER['DOCUMENT_ROOT']."/CED214/Index/navbar.php";?>
   <div class="sm:grid md:grid-cols-3 md:gap-3 font-sans" style="padding: 3%;">    
-  <div class="md:col-span-1">
-    <div class="px-4 sm:px-0">
-      <h1 class="text-2xl font-medium leading-6 text-blue-900">แบบฟอร์มรับสมัครคัดเลือกเข้าเอกคู่ที่ 2</h1>
+    <div class="mt-4 ml-5 md:mt-1 md:col-span-1">
+      <h3 class="text-2xl text-blue-400">แบบฟอร์มรับสมัครเข้าเอกคู่ที่ 2</h3>
     </div>
-
-                    <div class="mt-9" >
-                        <table class="table-auto bg-slate-50">
-                            <thead class="bg-slate-300 rounded-lg">
-                                <tr>
-                                    <th>เอกคู่ที่สมัคร</th>
-                                    <th>สถานะ</th>
-                                    <th>จัดการ</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm">
-                                <?php
-                                    $userObj = new user();
-                                    $user = $userObj->getuser($_SESSION['ST_id']);
-                                    $n=0;
-                                    // foreach($request1 as $req){
-                                    //     $n++;
-                                    //     echo "
-                                    //         <tr>
-                                    //             <td>{$n}</td>
-                                    //             <td>{$req['R_date']}</td>
-                                    //             <td>{$req['Type']}</td>
-                                    //             <td>{$req['R_detail']}</td>
-                                    //             <td>ยังไม่พร้อมใช้งาน</td>
-                                    //             <td><a href='./form-request.php?id={$req['R_id']}&action=edit'>แก้ไข</a></td>
-                                    //             <td><a href='../index/saverequest.php?id={$req['R_id']}&action=delete'>ลบ</a></td>
-                                    //         </tr>  
-                                    //     ";
-                                    // }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>                 
-              </div>
     <div class="mt-4 md:mt-2 md:col-span-2">
       <form action="#" method="get">
         <div class="shadow overflow-hidden bg-slate-100 rounded-md">
@@ -63,20 +19,12 @@ use App\model\user;
             <div class="grid grid-cols-5 gap-3">
               <!-- drop Down คำนำหน้า -->
               <div class="col-span-6 sm:col-span-1">
-                <label for='' class='block text-sm font-medium text-gray-700'>ประเภทคำร้องแจ้งการใช้งาน</label>
-                  <select name='R_type' id='R_type' class='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' required >
-                    <option value=''>---</option>
-                        <?php       
-                          $userObj=new user;
-                          $user = $userObj->getuser($_SESSION['$ST_id']);
-                          foreach($user as $use){
-                            $selected = ($reqq['R_type'] == $request['R_type']) ? "selected" : "";
-                            echo "
-                              <option value='{$reqq['R_type']}' {$selected}> {$reqq['Type_name']}</option>
-                            ";
-                          }  
-                        ?>
-                    </select>
+                <label for="" class="block text-sm text-gray-700">คำนำหน้า</label>
+                <select id="" name="" class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <option value="">---</option>
+                  <option value="">นาย</option>
+                  <option value="">นางสาว</option>
+                </select>
               </div>
               <!-- ชื่อ-สกุล -->
               <div class="col-span-6 sm:col-span-2">
