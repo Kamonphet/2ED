@@ -110,7 +110,10 @@ class Mrequest extends Db {
         SELECT 
             count(request.R_id) as val, 
             request_type.Type_name,
-            CASE WHEN request_type.Type_name = 'การใช้โปรแกรม' THEN 'program'ELSE 'tidto' 
+            CASE WHEN request_type.Type_name = 'การใช้โปรแกรม' THEN 'program'
+            WHEN request_type.Type_name = 'ติดต่อเจ้าหน้าที่' THEN 'tidto'
+            WHEN request_type.Type_name = 'แก้ไขข้อมูล' THEN 'editprofile' 
+            ELSE 'etc'
         END rnewname
         FROM 
             request

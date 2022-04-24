@@ -8,7 +8,7 @@ use App\model\Mform3;
 $userObj = new user;
 $form1Obj = new Mform3;
 
-if ($_REQUEST['action']=='edit2') {
+if ($_REQUEST['action']=='edit3') {
   $formbyid = $form1Obj->getformByid3($_REQUEST['id']); 
 }
 
@@ -25,7 +25,7 @@ if ($_REQUEST['action']=='edit2') {
 </head>
 <body class="bg-sky-100">
   <?php require $_SERVER['DOCUMENT_ROOT']."/CED214/Index/navbar.php";?>
-  <div class="sm:grid md:grid-cols-3 md:gap-3 font-sans" style="padding: 3%;">    
+  <div class="sm:grid md:grid-cols-3 md:gap-9 font-sans" style="padding: 3%;">    
   <div class="md:col-span-1">
     <div class="px-4 sm:px-0">
       <h1 class="text-2xl font-medium leading-6 text-blue-900">แบบฟอร์มรับสมัครคัดเลือกเข้าเอกคู่ที่ 2</h1>
@@ -34,8 +34,7 @@ if ($_REQUEST['action']=='edit2') {
       <table class="min-w-max w-full table-auto ">
         <thead class="rounded-lg">
             <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-              <th class="py-3 px-6 text-center">เอกที่สมัครแล้ว</th>
-              <th class="py-3 px-6 text-center">คะแนน</th>
+              <th class="py-3 px-1 text-center">เอกที่สมัครแล้ว</th>
               <th class="py-3 px-6 text-center">จัดการ</th>
             </tr>
         </thead>
@@ -45,19 +44,66 @@ if ($_REQUEST['action']=='edit2') {
             
             $n=0;
             foreach($form as $fom){
+              switch($fom['Smajor_id2']){
+                case '1':
+                  $fomm = 'การศึกษาปฐมวัย';
+                  break;
+                case '2':
+                  $fomm = 'การจัดการเรียนรู้ภาษาไทย';
+                  break;
+                case '3':
+                  $fomm = 'การจัดการเรียนรู้ภาษาอังกฤษ';
+                  break;
+                case '4':
+                  $fomm = 'การจัดการเรียนรู้สังคมศึกษา';
+                  break;
+                case '5':
+                  $fomm = 'การจัดการเรียนรูู้คณิตศาสตร์';
+                  break;
+                case '6':
+                  $fomm = 'การจัดการเรียนรู้วิทยาศาสตร์';
+                  break;
+                case '1':
+                  $fomm = 'คอมพิวเตอร์ศึกษา';
+                  break;
+              }
+
+              switch($fom['Smajor_id3']){
+                case '1':
+                  $fomm = 'การศึกษาปฐมวัย';
+                  break;
+                case '2':
+                  $fomm = 'การจัดการเรียนรู้ภาษาไทย';
+                  break;
+                case '3':
+                  $fomm = 'การจัดการเรียนรู้ภาษาอังกฤษ';
+                  break;
+                case '4':
+                  $fomm = 'การจัดการเรียนรู้สังคมศึกษา';
+                  break;
+                case '5':
+                  $fomm = 'การจัดการเรียนรูู้คณิตศาสตร์';
+                  break;
+                case '6':
+                  $fomm = 'การจัดการเรียนรู้วิทยาศาสตร์';
+                  break;
+                case '1':
+                  $fomm = 'คอมพิวเตอร์ศึกษา';
+                  break;
+              }
+
               echo "
                 <tr class='border-b border-gray-200 bg-gray-50 hover:bg-gray-100'>            
-                  <td class='py-3 px-6 text-center'>{$fom['S_name']}</td>
-                  <td class='py-3 px-6 text-center' ><span class='bg-green-200 text-green-6 py-1 px-3 rounded-full text-xs'><a href='{$fom['Ffile_id']}' target='_blank' >เก็บอันดับไว้แล้ว</a></span></td>
+                  <td class='py-3 px-6 text-center' ><span class='bg-green-200 text-green-6 py-1 px-3 rounded-full text-xs'><a href='' >เลือกอันดับแล้ว</a></span></td>
                   <td class='py-3 px-6 text-center'>
                     <div class='flex item-center justify-center'>
                         <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='./form2.php?id={$fom['Sr_id']}&action=edit2'>
+                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='./form3.php?id={$fom['Tr_id']}&action=edit3'>
                                 <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z' />
                             </svg>
                         </div>
                         <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saveform3.php?id={$fom['Sr_id']}&action=delete2'>
+                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saveform3.php?id={$fom['Tr_id']}&action=delete3'>
                                 <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16' />
                             </svg>
                         </div>
@@ -72,9 +118,9 @@ if ($_REQUEST['action']=='edit2') {
     </div>                
   </div>
     <div class="mt-4 md:mt-2 md:col-span-2">
-      <form action="../Index/saveform2.php" method="POST">
-      <input type="hidden" name="action" value="<?php echo ($_REQUEST['action']=='edit2')? "edit2" : "add2"; ?>">
-        <input type="hidden" name="id" value="<?php echo $formbyid['Sr_id']; ?>">
+      <form action="../Index/saveform3.php" method="POST">
+      <input type="hidden" name="action" value="<?php echo ($_REQUEST['action']=='edit3')? "edit3" : "add3"; ?>">
+        <input type="hidden" name="id" value="<?php echo $formbyid['Tr_id']; ?>">
         <div class="shadow overflow-hidden bg-slate-100 rounded-md">
           <div class="px-4 py-5 sm:p-6">
             <div class="grid grid-cols-5 gap-3">
@@ -143,39 +189,40 @@ if ($_REQUEST['action']=='edit2') {
             <div class="auto-cols-auto">
               <!-- เอก -->
               <h3 class="text-base text-lg text-gray-900">เอกคู่ที่ต้องการเข้า 3 อันดับแรก</h3>
-                <select id="" name=""  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <p class="text-sm text-red-500">*สามารถเลือกเอกการศึกษาปฐมวัยได้เฉพาะนิสิตที่เอกที่ 1 คือ การศึกษาปฐมวัย และ การศึกษาพิเศษเท่านั้น</p>
+                <select id="Smajor_id1" name="Smajor_id1"  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   <option value="">อันดับ 1</option>
                   <?php
                       $s_major = $userObj->getSmajor();
-                      foreach($s_major as $smajor){
-                        // $selected = ($use[''] == $request['R_type']) ? "selected" : "";
+                      foreach($s_major as $smajorone){
+                        $selected = ($smajorone['Smajor_id'] == $formbyid['Smajor_id1']) ? "selected" : "";
                         echo "
-                        <option value='{$smajor['S_major_id']}'>{$smajor['Smajor_name']}</option>
+                        <option value='{$smajorone['Smajor_id']}' {$selected}>{$smajorone['Smajor_name']}</option>
                         ";
                       }
                     ?>
                 </select>
                 <br>
-                <select id="" name=""  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select id="Smajor_id2" name="Smajor_id2"  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   <option value="">อันดับ 2</option>
                   <?php
-                      $s_major = $userObj->getSmajor();
-                      foreach($s_major as $smajor){
-                        // $selected = ($use[''] == $request['R_type']) ? "selected" : "";
+                      $s_major2 = $userObj->getSmajor();
+                      foreach($s_major2 as $smajortwo){
+                        $selected = ($smajortwo['Smajor_id'] == $formbyid['Smajor_id2']) ? "selected" : "";
                         echo "
-                        <option value='{$smajor['S_major_id']}'>{$smajor['Smajor_name']}</option>
+                        <option value='{$smajortwo['Smajor_id']}' {$selected}>{$smajortwo['Smajor_name']}</option>
                         ";
                       }
                     ?>
                 </select>
-                <br><select id="" name=""  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <br><select id="Smajor_id3" name="Smajor_id3"  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   <option value="">อันดับ 3</option>
                   <?php
-                      $s_major = $userObj->getSmajor();
-                      foreach($s_major as $smajor){
-                        // $selected = ($use[''] == $request['R_type']) ? "selected" : "";
+                      $s_major3 = $userObj->getSmajor();
+                      foreach($s_major3 as $smajorthree){
+                        $selected = ($smajorthree['Smajor_id'] == $formbyid['Smajor_id3']) ? "selected" : "";
                         echo "
-                        <option value='{$smajor['S_major_id']}'>{$smajor['Smajor_name']}</option>
+                        <option value='{$smajorthree['Smajor_id']}' {$selected}>{$smajorthree['Smajor_name']}</option>
                         ";
                       }
                     ?>
@@ -184,6 +231,7 @@ if ($_REQUEST['action']=='edit2') {
             
             <div class="px-4 py-3 text-right sm:px-0 bg-slate-100">
               <a href="../Index/main-menu.php" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
+              <button type="reset" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reset</button>
               <button type="submit" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
             </div>
           </div>

@@ -33,7 +33,7 @@ if ($_REQUEST['action']=='edit') {
         </div>
 
         <div class="mt-10 sm:mt-0">
-            <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:grid md:grid-cols-2 md:gap-6">
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">ฟอร์มรายละเอียดแจ้งการใช้งาน</h3>
@@ -41,40 +41,55 @@ if ($_REQUEST['action']=='edit') {
                     </div>
 
                     <div class="mt-9" >
-                        <table class="table-auto bg-slate-50">
-                            <thead class="bg-slate-300 rounded-lg">
-                                <tr>
-                                    <th>คำร้องที่</th>
-                                    <th>วันที่</th>
-                                    <th>ประเภท</th>
-                                    <th>รายละเอียด</th>
-                                    <th>สถานะ</th>
-                                    <th>จัดการ</th>
+                    <table class="min-w-max w-full table-auto">
+                            <thead class="rounded-lg">
+                                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                    <th class="py-3 px-6 text-center">คำร้องที่</th>
+                                    <th class="py-3 px-6 text-center">วันที่</th>
+                                    <th class="py-3 px-6 text-center">ประเภท</th>
+                                    <th class="py-3 px-6 text-center">รายละเอียด</th>
+                                    <th class="py-3 px-6 text-center">สถานะ</th>
+                                    <th class="py-3 px-6 text-center">จัดการ</th>
                                 </tr>
                             </thead>
-                            <tbody class="text-sm">
+                            <tbody class="text-gray-600 text-sm font-light">
                                 <?php
                                     $requestObj = new Mrequest();
                                     $request1 = $requestObj->getRequest($_SESSION['ST_id']);
                                     $n=0;
                                     foreach($request1 as $req){
-                                        $n++;
+                                        
+                                        $n++;    
                                         echo "
-                                            <tr>
-                                                <td>{$n}</td>
-                                                <td>{$req['R_date']}</td>
-                                                <td>{$req['Type']}</td>
-                                                <td>{$req['R_detail']}</td>
-                                                <td>ยังไม่พร้อมใช้งาน</td>
-                                                <td><a href='./form-request.php?id={$req['R_id']}&action=edit'>แก้ไข</a></td>
-                                                <td><a href='../index/saverequest.php?id={$req['R_id']}&action=delete'>ลบ</a></td>
-                                            </tr>  
+                                            <tr class='border-b border-gray-200 bg-gray-50 hover:bg-gray-100'>            
+                                                <td class='py-3 px-6 text-center'>{$n}</td>
+                                                <td class='py-3 px-6 text-center'>{$req['R_date']}</td>
+                                                <td class='py-3 px-6 text-center'>{$req['Type']}</td>
+                                                <td class='py-3 px-6 text-center'>{$req['R_detail']}</td>
+                                                <td class='py-3 px-6 text-center' ><span class='bg-yellow-200 text-yellow-6 py-1 px-3 rounded-full text-xs'><a href=''>อยู่ระหว่างดำเนินการ</a></span></td>
+                                                <td class='py-3 px-6 text-center'>
+                                                    <div class='flex item-center justify-center'>
+                                                        <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
+                                                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='./form-request.php?id={$req['R_id']}&action=edit'>
+                                                                <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z' />
+                                                            </svg>
+                                                        </div>
+                                                        <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
+                                                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saverequest.php?id={$req['R_id']}&action=delete'>
+                                                                <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16' />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         ";
                                     }
-                                ?>
+                                ?>               
                             </tbody>
-                        </table>
-                        <a href="form-request.php">เพิ่มคำร้อง</a>
+                        </table><br>
+                        <div class="grid justify-end">
+                            <a href="form-request.php" class=" hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">เพิ่มคำร้อง</a>
+                        </div>
                     </div>                 
                 </div>
                 <div class="mt-2 md:mt-0 md:col-span-2">
