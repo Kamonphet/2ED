@@ -11,6 +11,7 @@ if ($_REQUEST['action']=='edit') {
     $request = $requestObj->getrequestByid($_REQUEST['id']); 
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,6 +74,7 @@ if ($_REQUEST['action']=='edit') {
                                 ?>
                             </tbody>
                         </table>
+                        <a href="form-request.php">เพิ่มคำร้อง</a>
                     </div>                 
                 </div>
                 <div class="mt-2 md:mt-0 md:col-span-2">
@@ -130,8 +132,9 @@ if ($_REQUEST['action']=='edit') {
                                 </div>                  
                             </div>
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                <button type="reset" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reset</button>
-                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                                <a href="../Index/main-menu.php" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
+                                <button type="reset" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Reset</button>
+                                <button type="submit" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
                             </div>
                         </div>
                     </form>

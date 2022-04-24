@@ -103,6 +103,54 @@ class Mrequest extends Db {
 
         return true;
     }
+
+    public function groupRequest(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+        SELECT 
+            count(request.R_id) as val, 
+            request_type.Type_name,
+            CASE WHEN request_type.Type_name = 'การใช้โปรแกรม' THEN 'program'ELSE 'tidto' 
+        END rnewname
+        FROM 
+            request
+        Join request_type ON 
+            request_type.R_type = request.R_type 
+        GROUP BY 
+            request.R_type
+        ";
+        
+        $stmt=$this->pdo->query($sql);
+        // $stmt->execute([$st_id]);
+        $data = $stmt->fetchAll();
+        return  $data;
+
+    }
+
+
+    // public function groupround(){
+    //     //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+    //     $sql ="
+    //     SELECT 
+    //         count(f_round.F_id) as val, 
+    //         s_major.Smajor_name,
+    //         CASE WHEN s_major.Smajor_name = 'การศึกษาปฐมวัย' THEN 'pathomwai'
+    //         WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาไทย' THEN 'pathomwai'
+    //         WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาสังคม' THEN 'pathomwai'ELSE 'ETC'
+    //     END robti1
+    //     FROM 
+    //         f_round
+    //     Join s_major ON 
+    //         s_major.Smajor_id = f_round.Smajor_id
+    //     GROUP BY
+    //         f_round.Smajor_id
+    //     ";
+        
+    //     $stmt=$this->pdo->query($sql);
+    //     $data = $stmt->fetchAll();
+    //     return  $data;
+
+    // }
 }
 
 class Trequest extends Db{

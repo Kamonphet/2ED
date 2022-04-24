@@ -12,5 +12,7 @@
             "email": "kamonpach.siri@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "claviska/simpleimage": "^2.5"
+    }
 }

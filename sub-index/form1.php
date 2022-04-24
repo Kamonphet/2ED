@@ -4,6 +4,15 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 require $_SERVER['DOCUMENT_ROOT']."../CED214/auth/auth.php";
 
 use App\model\user;
+use App\model\Mform1;
+$userObj = new user;
+$formObj = new Mform1;
+
+if ($_REQUEST['action']=='edit1') {
+  $formbyid = $formObj->getformByid1($_REQUEST['id']); 
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -17,103 +26,118 @@ use App\model\user;
 </head>
 <body class="bg-sky-100">
   <?php require $_SERVER['DOCUMENT_ROOT']."/CED214/Index/navbar.php";?>
-  <div class="sm:grid md:grid-cols-3 md:gap-3 font-sans" style="padding: 3%;">    
+  <div class="sm:grid md:grid-cols-3 md:gap-6 font-sans" style="padding: 2%;">    
   <div class="md:col-span-1">
     <div class="px-4 sm:px-0">
       <h1 class="text-2xl font-medium leading-6 text-blue-900">แบบฟอร์มรับสมัครคัดเลือกเข้าเอกคู่ที่ 2</h1>
     </div>
-
-                    <div class="mt-9" >
-                        <table class="table-auto bg-slate-50">
-                            <thead class="bg-slate-300 rounded-lg">
-                                <tr>
-                                    <th>เอกคู่ที่สมัคร</th>
-                                    <th>สถานะ</th>
-                                    <th>จัดการ</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm">
-                                <?php
-                                    $userObj = new user();
-                                    $user = $userObj->getuser($_SESSION['ST_id']);
-                                    $n=0;
-                                    // foreach($request1 as $req){
-                                    //     $n++;
-                                    //     echo "
-                                    //         <tr>
-                                    //             <td>{$n}</td>
-                                    //             <td>{$req['R_date']}</td>
-                                    //             <td>{$req['Type']}</td>
-                                    //             <td>{$req['R_detail']}</td>
-                                    //             <td>ยังไม่พร้อมใช้งาน</td>
-                                    //             <td><a href='./form-request.php?id={$req['R_id']}&action=edit'>แก้ไข</a></td>
-                                    //             <td><a href='../index/saverequest.php?id={$req['R_id']}&action=delete'>ลบ</a></td>
-                                    //         </tr>  
-                                    //     ";
-                                    // }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>                 
-              </div>
+    <div class="mt-5">
+      <table class="min-w-max w-full table-auto">
+        <thead class="rounded-lg">
+            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <th class="py-3 px-6 text-center">เอกที่สมัครแล้ว</th>
+                <th class="py-3 px-6 text-center">ไฟล์</th>
+                <th class="py-3 px-6 text-center">จัดการ</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+          <?php
+            $form = $formObj->getform1($_SESSION['ST_id']);
+            
+            $n=0;
+            foreach($form as $fom){
+              echo "
+                <tr class='border-b border-gray-200 bg-gray-50 hover:bg-gray-100'>            
+                  <td class='py-3 px-6 text-center'>{$fom['S_name']}</td>
+                  <td class='py-3 px-6 text-center' ><span class='bg-green-200 text-green-6 py-1 px-3 rounded-full text-xs'><a href='{$fom['Ffile_id']}' target='_blank' >อัพโหลดแล้ว</a></span></td>
+                  <td class='py-3 px-6 text-center'>
+                    <div class='flex item-center justify-center'>
+                        <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
+                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='./form1.php?id={$fom['Fr_id']}&action=edit1'>
+                                <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z' />
+                            </svg>
+                        </div>
+                        <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
+                            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saveform.php?id={$fom['Fr_id']}&action=delete1'>
+                                <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16' />
+                            </svg>
+                        </div>
+                    </div>
+                  </td>
+                </tr>
+              ";
+            }
+          ?>               
+        </tbody>
+      </table>
+    </div>
+                                   
+  </div>
     <div class="mt-4 md:mt-2 md:col-span-2">
-      <form action="#" method="get">
+      <form action="../Index/saveform.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="<?php echo ($_REQUEST['action']=='edit1')? "edit1" : "add1"; ?>">
+        <input type="hidden" name="id" value="<?php echo $formbyid['Fr_id']; ?>">
         <div class="shadow overflow-hidden bg-slate-100 rounded-md">
           <div class="px-4 py-5 sm:p-6">
             <div class="grid grid-cols-5 gap-3">
               <!-- drop Down คำนำหน้า -->
-              <div class="col-span-6 sm:col-span-1">
-                <label for='' class='block text-sm font-medium text-gray-700'>ประเภทคำร้องแจ้งการใช้งาน</label>
-                  <select name='R_type' id='R_type' class='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' required >
-                    <option value=''>---</option>
-                        <?php       
-                          $userObj=new user;
-                          $user = $userObj->getuser($_SESSION['$ST_id']);
-                          foreach($user as $use){
-                            $selected = ($reqq['R_type'] == $request['R_type']) ? "selected" : "";
-                            echo "
-                              <option value='{$reqq['R_type']}' {$selected}> {$reqq['Type_name']}</option>
-                            ";
-                          }  
-                        ?>
-                    </select>
+              <div class="col-span-4 sm:col-span-1">
+                <label for='' class='block text-sm font-medium text-gray-700'>คำนำหน้า</label>
+                <select name='' id='' class='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' required >
+                    <?php
+                      $user = $userObj->getuser($_SESSION['ST_id']);
+                      foreach($user as $use){
+                        // $selected = ($use['Prefix'] == $use['R_type']) ? "selected" : "";
+                        echo "
+                        <option value='{$use['Prefix']}'>{$use['Prefix']}</option>
+                        ";
+                      }
+                    ?>
+                    <option value="นาย">นาย</option>
+                    <option value="นางสาว">นางสาว</option>
+                </select>
               </div>
               <!-- ชื่อ-สกุล -->
               <div class="col-span-6 sm:col-span-2">
                 <label for="" class="block text-sm text-gray-700">ชื่อ</label>
-                <input type="text" name="" id=""  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md">
+                <input type="text" name="" id=""  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-md border-gray-300 rounded-md" value="<?php echo $use['Sname'];?>" readonly >
               </div>
 
               <div class="col-span-6 sm:col-span-2">
                 <label for="" class="block text-sm text-gray-700">นามสกุล</label>
-                <input type="text" name="" id="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md">
+                <input type="text" name="" id="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-md border-gray-300 rounded-md" value="<?php echo $use['Lname'];?>" readonly>
               </div>
               <!-- เพศ -->
               <div class="col-span-6 sm:col-span-1">
                 <label for="" class="block text-sm text-gray-700">เพศ</label>
-                <select id="" name=""  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  <option>---</option>
-                  <option>ชาย</option>
-                  <option>หญิง</option>
+                <select id="" name=""  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-md">
+                  <?php
+                      echo "
+                        <option value='{$use['Sex']}'>{$use['Sex']}</option>
+                      ";
+                    ?>
+                    <option value="ชาย">ชาย</option>
+                    <option value="หญิง">หญิง</option>
+                    <option value="ไม่ระบุ">ไม่ระบุ</option>
                 </select>
               </div>
 
               <!-- รหัสนิสิต -->
               <div class="col-span-6 sm:col-span-2">
-                <label for="" class="block text-sm text-gray-700">รหัสนิสิต</label>
-                <input type="number" name="" id="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md">
+                <label for="ST_id" class="block text-sm text-gray-700">รหัสนิสิต</label>
+                <input type="number" name="ST_id" id="ST_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-md border-gray-300 rounded-md" value="<?php echo $_SESSION['ST_id'];?>" readonly>
               </div>
 
               <!-- email -->
               <div class="col-span-6 sm:col-span-2">
                 <label for="" class="block text-sm font-medium text-gray-700">Email address</label>
-                <input type="email" name="" id="" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md">
+                <input type="email" name="" id="" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-md border-gray-300 rounded-md" value="<?php echo $use['mail'];?>" readonly>
               </div>
 
               <!-- เบอร์โทรติดต่อ -->
               <div class="col-span-5 sm:col-span-2">
                 <label for="" class="block text-sm font-medium text-gray-700">เบอร์โทรติดต่อ</label>
-                <input type="number" name="" id="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md">
+                <input type="number" name="" id="" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-md border-gray-300 rounded-md" value="<?php echo $use['contract'];?>" readonly>
               </div>
             </div>
             <br>
@@ -121,60 +145,18 @@ use App\model\user;
             <div class="auto-cols-auto">
               <!-- เอก -->
               <h3 class="text-base text-lg text-gray-900">เอกคู่ที่ต้องการเข้า</h3>
-                <div class="mt-4 space-y-3">
-                  <div class="flex">
-                    <div class="flex items-center h-5">
-                      <input id="" name="" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-2 text-sm">
-                      <label for="" class="font-medium text-gray-700">การศึกษาปฐมวัย</label>
-                    </div>
-
-                    <div class="flex items-center h-5 ml-3">
-                      <input id="" name="" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-2 text-sm">
-                      <label for="" class="font-medium text-gray-700">การจัดการเรียนรู้ภาษาไทย</label>
-                    </div>
-
-                    <div class="flex items-center h-5 ml-3">
-                      <input id="" name="" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-2 text-sm">
-                      <label for="" class="font-medium text-gray-700">การจัดการเรียนรู้ภาษาอังกฤษ</label>
-                    </div>
-
-                    <div class="flex items-center h-5 ml-3">
-                      <input id="" name="" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-2 text-sm">
-                      <label for="" class="font-medium text-gray-700">การจัดการเรียนรู้สังคม</label>
-                    </div>
-                  </div>
-
-                  <div class="flex">
-                    <div class="flex items-center h-5">
-                      <input id="" name="" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-2 text-sm">
-                      <label for="" class="text-gray-700">การจัดการเรียนรู้คณิตศาสตร์</label>
-                    </div>
-
-                    <div class="flex items-center h-5 ml-3">
-                      <input id="" name="" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-2 text-sm">
-                      <label for="" class="text-gray-700">การจัดการเรียนรู้วิทยาศาสตร์</label>
-                    </div>
-
-                    <div class="flex items-center h-5 ml-3">
-                      <input id="" name="" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-2 text-sm">
-                      <label for="" class="text-gray-700">เอกคอมพิวเตอร์ศึกษา</label>
-                    </div>
-                  </div>
-                </div>
+                <select id="" name="Smajor_id"  class="block py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <option value="">อยากเข้าเอกไหนก็เลือกเลย...</option>
+                  <?php
+                      $s_major = $userObj->getSmajor();
+                      foreach($s_major as $smajor){
+                        $selected = ($smajor['Smajor_id'] == $formbyid['Smajor_id']) ? "selected" : "";
+                        echo "
+                        <option value='{$smajor['Smajor_id']}' {$selected}>{$smajor['Smajor_name']}</option>
+                        ";
+                      }
+                    ?>
+                </select>
             </div>
             <br>
             <hr>
@@ -187,12 +169,9 @@ use App\model\user;
                   <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
-                  <div class="flex text-sm text-gray-600">
-                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                      <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                    </label>
-                    <p class="pl-1">or drag and drop</p>
+                  <div class="flex text-sm text-gray-600 ">
+                    <input type="file" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-9 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100" id="File_name" name="File_name" value="<?php echo $formbyid['Ffile_id']?>">
+                    <input type="text" class="text-sm text-slate-500 bg-slate-100" id="Ffile_id" name="Ffile_id" value="<?php echo $formbyid['Ffile_id']?>">
                   </div>
                   <p class="text-xs text-gray-500">PDF, ZIP up to 20MB</p>
                 </div>
@@ -200,7 +179,8 @@ use App\model\user;
             </div>
             
             <div class="px-4 py-3 text-right sm:px-0 bg-slate-100">
-              <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+              <a href="../Index/main-menu.php" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
+              <button type="submit" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
             </div>
           </div>
         </div>

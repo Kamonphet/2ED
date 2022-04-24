@@ -43,9 +43,9 @@ class user extends Db {
                 user_nisit.Lname,
                 user_nisit.Sex,
                 user_nisit.mail,
-                user_nisit.Fmajor_id, 
-                user_nisit.contract,
-                f_major.Fmajor_name AS Fmajor
+                user_nisit.Fmajor_id,
+                f_major.Fmajor_name AS Fmajor,
+                user_nisit.contract
             FROM 
                 user_nisit
             LEFT JOIN f_major ON
@@ -57,6 +57,21 @@ class user extends Db {
         ";
         $stmt=$this->pdo->query($sql);
         // $stmt->execute([$st_id]);
+        $data = $stmt->fetchAll();
+        return  $data;
+    }
+
+    public  function getSmajor(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+            SELECT
+                *
+            FROM
+                s_major
+                
+        
+        ";
+        $stmt=$this->pdo->query($sql);
         $data = $stmt->fetchAll();
         return  $data;
 
