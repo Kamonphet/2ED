@@ -39,7 +39,6 @@ $typeround3 = array("Tomwai" => "ปฐมวัย", "Thai" => "ไทย", "En
 $valround3 = array("Tomwai" => $groupround3[0]['val'], "Thai" => $groupround3[1]['val'], "English" => $groupround3[2]['val'], "Social" => $groupround3[3]['val'], "Math" => $groupround3[4]['val'], "Sci" => $groupround3[5]['val'], "Comp" => $groupround3[6]['val']);
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -60,10 +59,25 @@ $valround3 = array("Tomwai" => $groupround3[0]['val'], "Thai" => $groupround3[1]
 </head>
 
 <body class="bg-teal-50">
-  <?php require $_SERVER['DOCUMENT_ROOT'] . "/CED214/Index/navbar.php"; ?>
+  <?php require $_SERVER['DOCUMENT_ROOT'] . "/CED214/Index/navbar.php";
+  if ($_GET['msg']) {
+    echo '<div id="alert-3" class="flex p-4 mb-4 bg-green-100 rounded-lg dark:bg-green-200" role="alert">
+            <svg class="flex-shrink-0 w-5 h-5 text-green-700 dark:text-green-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <div class="ml-3 text-sm font-medium text-green-700 dark:text-green-800">
+              เข้าสู่ระบบสำเร็จ.
+            </div>
+            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-100 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-green-200 dark:text-green-600 dark:hover:bg-green-300" data-dismiss-target="#alert-3" aria-label="Close">
+              <span class="sr-only">Close</span>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            </button>
+          </div>
+    ';
+  };
+  ?>
+
   <main>
     <div class="sm:grid lg:grid-cols-4 md:gap-3 font-sans p-3">
-      <!-- This example requires Tailwind CSS v2.0+ -->
+
       <div class="bg-white shadow sm:rounded-lg m-3" style="height: max-content" data-aos="zoom-out-up" data-aos-duration="500">
         <div class="px-4 py-5 sm:px-6">
           <h1 class="text-2xl leading-6 font-medium text-gray-900">Welcome</h1>
@@ -87,7 +101,6 @@ $valround3 = array("Tomwai" => $groupround3[0]['val'], "Thai" => $groupround3[1]
             </div>
             <br>
           </dl>
-
         </div>
 
         <div class="border-t border-gray-200">
@@ -101,7 +114,7 @@ $valround3 = array("Tomwai" => $groupround3[0]['val'], "Thai" => $groupround3[1]
 
               <div id="indicators-carousel" class="relative" data-carousel="static">
 
-                <div class="overflow-hidden relative h-50 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
+                <div class="overflow-hidden relative h-50 rounded-lg sm:h-64 xl:h-80 2xl:h-96 ">
 
                   <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full p-4" data-carousel-item="active">
                     <div id="canvas-holder" class="text-sm text-center">จำนวนผู้ใช้งานในระบบ<canvas id="user"></canvas></div>
@@ -166,9 +179,9 @@ $valround3 = array("Tomwai" => $groupround3[0]['val'], "Thai" => $groupround3[1]
             if ($_SESSION['Role'] == 'Student' or $_SESSION['Role'] == 'Admin') {
               echo '
                   <div class="mt-6 space-y-12 lg:space-y-0 lg:grid md:grid-cols-3 lg:gap-x-6 ">
-                    <div class="group relative " data-aos="zoom-out-up">
+                    <div class="group relative" data-aos="zoom-out-up">
                       <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 group-hover:scale-105 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1 ">
-                        <img src="../img/round1.jpg" alt="">
+                        <img src="../img/Round1.jpg" alt="">
                       </div>
                       <h3 class="mt-6 text-sm text-gray-500">
                         <a href="../sub-index/form1.php">
@@ -181,7 +194,7 @@ $valround3 = array("Tomwai" => $groupround3[0]['val'], "Thai" => $groupround3[1]
       
                     <div class="group relative" data-aos="zoom-out-up">
                       <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 group-hover:scale-105 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                        <img src="../img/round2.jpg" alt="">
+                        <img src="../img/Round2.jpg" alt="">
                       </div>
                       <h3 class="mt-6 text-sm text-gray-500">
                         <a href="../sub-index/form2.php">
@@ -194,7 +207,7 @@ $valround3 = array("Tomwai" => $groupround3[0]['val'], "Thai" => $groupround3[1]
       
                     <div class="group relative" data-aos="zoom-out-up">
                       <div class="bg-white rounded-lg overflow-hidden group-hover:opacity-75 group-hover:scale-105 sm:aspect-w-2 sm:aspect-h-1 sm:h-64 lg:aspect-w-1 lg:aspect-h-1">
-                        <img src="../img/round3.jpg" alt="">
+                        <img src="../img/Round3.jpg" alt="">
                       </div>
                       <h3 class="mt-6 text-sm text-gray-500">
                         <a href="../sub-index/form3.php">

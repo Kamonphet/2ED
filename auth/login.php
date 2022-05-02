@@ -1,11 +1,12 @@
-<?php 
+<?php
 //กันแจ้งเตือน warning
-error_reporting(E_ALL ^ E_WARNING); 
-require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
+error_reporting(E_ALL ^ E_WARNING);
+require $_SERVER['DOCUMENT_ROOT'] . "../CED214/vendor/autoload.php";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,11 +15,13 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 	<link rel="stylesheet" href="../CSS/Login.css">
 	<link href="../CSS/style_l.css" rel="stylesheet">
 	<img src="../img/loading.gif" style="width: 100%;" alt="">
-
 	
+
+
 </head>
+
 <body class="font-sans">
-	<div class="animation-area"style="padding-top: 5%;">
+	<div class="animation-area" style="padding-top: 5%;">
 		<ul class="box-area">
 			<li></li>
 			<li></li>
@@ -26,28 +29,28 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 			<li></li>
 			<li></li>
 			<li></li>
-			
+
 		</ul>
 
 		<div class="container">
-			<?php 
-				if($_GET['msg']){
-                	echo '<p style="color:red">ชื่อ หรือ Password ไม่ถูกต้อง ใส่ใหม่ซะ!!!</p>';
-            	};
+			<?php
+			if ($_GET['msg']) {
+				echo '<span><p style="color:red">ชื่อ หรือ Password ไม่ถูกต้อง ใส่ใหม่ซะ!!!</p></span>';
+			};
 			?>
 			<form action="./checklogin.php" method="POST" id="login">
-			  <div class="title">เข้าสู่ระบบ</div>
-			  <div class="input-box underline">
-				<input type="text" name="Sname" id="Sname"placeholder="ชื่อผู้ใช้" required>
-				<div class="underline"></div>
-			  </div>
-			  <div class="input-box">
-				<input type="password" name="password" id="password" placeholder="รหัสผ่าน" required>
-				<div class="underline"></div>
-			  </div>
-			  <div class="input-box button">
-				<input type="submit" name="" value="เข้าสู่ระบบ">
-			  </div>
+				<div class="title">เข้าสู่ระบบ</div>
+				<div class="input-box underline">
+					<input type="text" name="Sname" id="Sname" placeholder="ชื่อผู้ใช้" required>
+					<div class="underline"></div>
+				</div>
+				<div class="input-box">
+					<input type="password" name="password" id="password" placeholder="รหัสผ่าน" required>
+					<div class="underline"></div>
+				</div>
+				<div class="input-box button">
+					<input type="submit" name="" value="เข้าสู่ระบบ">
+				</div>
 			</form>
 
 			<!-- <div class=" text-center">
@@ -56,4 +59,5 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 		</div>
 	</div>
 </body>
+
 </html>

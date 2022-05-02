@@ -47,7 +47,7 @@ $accObj = new MAcc;
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
                         <?php
-                        $acc = $accObj->getaccadmin1();
+                        $acc = $accObj->getaccconadmin1();
                         $n = 0;
                         foreach ($acc as $ac) {
                             $n++;

@@ -98,11 +98,6 @@ error_reporting(E_ALL ^ E_WARNING);
         sec = "0" + sec
       }
       var t_str = hours + ":" + minutes + ":" + sec + " ";
-      if (hours > 11) {
-        t_str += "กลางวัน";
-      } else {
-        t_str += "กลางคืน";
-      }
       document.getElementById('time_span').innerHTML = t_str;
       setTimeout(timer, 1000);
     }

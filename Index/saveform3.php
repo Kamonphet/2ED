@@ -29,5 +29,5 @@ if ($_REQUEST['action']=='delete3') {
     $form1Obj->addform3($form);
 };
 
-header("location:../sub-index/form3.php");
+header("location:../sub-index/form3.php?msg=sussess");
 ?>

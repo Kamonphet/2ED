@@ -3,9 +3,7 @@ error_reporting(E_ALL ^ E_WARNING);
 require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 
 use App\model\Mform1;
-use App\model\Mform2;
 $formObj= new Mform1;
-$form1Obj= new Mform2;
 
 // $ext=end(explode("." , $_FILES['File_name']['name']));
 // echo $ext;
@@ -16,7 +14,6 @@ if($_FILES['File_name']['tmp_name']){
 
     move_uploaded_file($_FILES['File_name']['tmp_name'], $_SERVER['DOCUMENT_ROOT'].$File_name);
 }
-
 
 
 if ($_REQUEST['action']=='delete1') {
@@ -51,5 +48,5 @@ if ($_REQUEST['action']=='delete1') {
 
 };
 
-header("location:../sub-index/form1.php");
+header("location:../sub-index/form1.php?msg=sussess");
 ?>

@@ -48,9 +48,6 @@ $accObj = new MAcc;
                             <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับ 3</th>
                             <th class="py-3 px-6 text-center">สถานะ</th>
                             <th class="py-3 px-6 text-center">การยืนยันสิทธิ์</th>
-                            <?php if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
-                                echo '<th class="py-3 px-6 text-center">จัดการ</th>';
-                            } ?>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
@@ -110,32 +107,8 @@ $accObj = new MAcc;
                                         <td class='py-3 px-6 text-center'>{$ac['Smajor_id3']}</td>
                                         <td class='py-3 px-6 text-center'><span class='bg-blue-200 text-blue-6 py-1 px-3 rounded-full text-xs'>{$ac['Select_result']}</span></td>
                                         <td class='py-3 px-6 text-center'><span class='bg-green-200 text-green-6 py-1 px-3 rounded-full text-xs'>{$ac['St_confirm']}</span></td>
-                                ";
-                            if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
-                                echo "
-                                        
-                                        <td class='py-3 px-6 text-center'>
-                                            <div class='flex item-center justify-center'>
-                                                <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='{$ac['file']}' target='_blank' >
-                                                        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
-                                                        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
-                                                    </svg>
-                                                </div>
-                                                <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saveacc.php?id={$ac['fr_id']}&action=edit1'>        
-
-                                                        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z' />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    ";
-                            };
-
-                            echo '
                                     </tr>
-                                ';
+                                ";
                         } ?>
                     </tbody>
                 </table>

@@ -48,7 +48,7 @@ $accObj = new MAcc;
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
                         <?php
-                        $acc = $accObj->getaccadmin3();
+                        $acc = $accObj->getaccconadmin3();
                         $n = 0;
                         foreach ($acc as $ac) {
                             $n++;
@@ -91,18 +91,14 @@ $accObj = new MAcc;
                                         <td class='py-3 px-6 text-center'>{$ac['mname']}</td>
                                         <td class='py-3 px-6 text-center'>{$ac['Smajor_id2']}</td>
                                         <td class='py-3 px-6 text-center'>{$ac['Smajor_id3']}</td>
-                                        <td class='py-3 px-6 text-center' ><span class='bg-red-200 text-red-6 py-1 px-3 rounded-full text-xs'>{$ac['Status']}</span></td>
+                                        <td class='py-3 px-6 text-center' >
+                                            <span class='bg-red-200 text-red-6 py-1 px-3 rounded-full text-xs'>{$ac['Status']}</span>
+                                            <span class='bg-green-200 text-green-6 py-1 px-3 rounded-full text-xs'><button type='button' data-modal-toggle='large-modal'>ดูคะแนน</button></span>
+                                        </td>
                                         <td class='py-3 px-6 text-center'>
                                             <div class='flex item-center justify-center'>
                                                 <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href=''>
-                                                        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
-                                                        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
-                                                    </svg>
-                                                </div>
-                                                <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saveacc.php?id={$ac['tr_id']}&action=edit3'>        
-
+                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='./form2.php?id={$fom['Sr_id']}&action=edit2'>
                                                         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z' />
                                                     </svg>
                                                 </div>
@@ -119,10 +115,94 @@ $accObj = new MAcc;
                 <a href="../Index/ACC.php" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
             </div>
         </div>
-
     </div>
     </div>
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/CED214/Index/footer.php"; ?>
+
+    <div id="large-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+        <div class="relative p-4 w-full max-w-4xl h-full md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex justify-between items-center p-5 rounded-t border-b dark:border-gray-600">
+                    <h3 class="text-xl font-medium text-gray-900 dark:text-white">
+                        ข้อมูลอันดับที่ได้เลือกไว้
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="large-modal">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    <table class="min-w-max w-full table-auto ">
+                        <thead>
+                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                <th class="py-3 px-6 text-center">รหัสนิสิต</th>
+                                <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับที่ 1</th>
+                                <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับที่ 2</th>
+                                <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับที่ 3</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 text-sm font-light">
+                            <?php
+                            
+                            $accall = $accObj->getAccconadmin3();
+                            $n = 0;
+                            foreach ($accall as $acall) {
+                                if ($acall['Smajor_id2'] == 1) {
+                                    $acall['Smajor_id2'] = 'การศึกษาปฐมวัย';
+                                } elseif ($acall['Smajor_id2'] == 2) {
+                                    $acall['Smajor_id2'] = 'การจัดการเรียนรู้ภาษาไทย';
+                                } elseif ($acall['Smajor_id2'] == 3) {
+                                    $acall['Smajor_id2'] = 'การจัดการเรียนรู้ภาษาอังกฤษ';
+                                } elseif ($acall['Smajor_id2'] == 4) {
+                                    $acall['Smajor_id2'] = 'การจัดการเรียนรู้สังคม';
+                                } elseif ($acall['Smajor_id2'] == 5) {
+                                    $acall['Smajor_id2'] = 'การจัดการเรียนรู้คณิตศาสตร์';
+                                } elseif ($acall['Smajor_id2'] == 6) {
+                                    $acall['Smajor_id2'] = 'การจัดการเรียนรู้วิทยาศาสตร์';
+                                } else {
+                                    $acall['Smajor_id2'] = 'คอมพิวเตอร์ศึกษา';
+                                };
+
+                                if ($acall['Smajor_id3'] == 1) {
+                                    $acall['Smajor_id3'] = 'การศึกษาปฐมวัย';
+                                } elseif ($acall['Smajor_id3'] == 2) {
+                                    $acall['Smajor_id3'] = 'การจัดการเรียนรู้ภาษาไทย';
+                                } elseif ($acall['Smajor_id3'] == 3) {
+                                    $acall['Smajor_id3'] = 'การจัดการเรียนรู้ภาษาอังกฤษ';
+                                } elseif ($acall['Smajor_id3'] == 4) {
+                                    $acall['Smajor_id3'] = 'การจัดการเรียนรู้สังคม';
+                                } elseif ($acall['Smajor_id3'] == 5) {
+                                    $acall['Smajor_id3'] = 'การจัดการเรียนรู้คณิตศาสตร์';
+                                } elseif ($acall['Smajor_id3'] == 6) {
+                                    $acall['Smajor_id3'] = 'การจัดการเรียนรู้วิทยาศาสตร์';
+                                } else {
+                                    $acall['Smajor_id3'] = 'คอมพิวเตอร์ศึกษา';
+                                };
+                                echo "
+                            <tr class='border-b border-gray-200 bg-gray-50 hover:bg-gray-100'>
+                                <td class='py-3 px-6 text-center'>{$acall['ST_id']}</td>
+                                <td class='py-3 px-6 text-center'>{$acall['mname']}</td>
+                                <td class='py-3 px-6 text-center'>{$acall['Smajor_id2']}</td>
+                                <td class='py-3 px-6 text-center'>{$acall['Smajor_id3']}</td>                             
+                            </tr>
+                        ";
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                    <button data-modal-toggle="large-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">ออก</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         AOS.init();
     </script>
