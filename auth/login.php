@@ -13,11 +13,12 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="../CSS/Login.css">
 	<link href="../CSS/style_l.css" rel="stylesheet">
-	
+	<img src="../img/loading.gif" style="width: 100%;" alt="">
+
 	
 </head>
 <body class="font-sans">
-	<div class="animation-area"style="padding-top: 10%;">
+	<div class="animation-area"style="padding-top: 5%;">
 		<ul class="box-area">
 			<li></li>
 			<li></li>
@@ -25,6 +26,7 @@ require $_SERVER['DOCUMENT_ROOT']."../CED214/vendor/autoload.php";
 			<li></li>
 			<li></li>
 			<li></li>
+			
 		</ul>
 
 		<div class="container">
