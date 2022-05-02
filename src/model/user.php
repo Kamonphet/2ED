@@ -77,5 +77,37 @@ class user extends Db {
 
     }
 
+    public function groupuser(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+        SELECT 
+            count(user_nisit.ST_id) as val,
+            f_major.Fmajor_name,
+            CASE WHEN f_major.Fmajor_name = 'การประถมศึกษา' THEN 'pathom'
+            WHEN f_major.Fmajor_name = 'อุตสาหกรรมศึกษา' THEN 'udsa'
+            WHEN f_major.Fmajor_name = 'เทคโนโลยีการศึกษา' THEN 'techno'
+            WHEN f_major.Fmajor_name = 'จิตวิทยาและการแนะแนว' THEN 'jit'
+            WHEN f_major.Fmajor_name = 'การวัดประเมินและวิจัยการศึกษา' THEN 'wijai'
+            WHEN f_major.Fmajor_name = 'การศึกษาพิเศษ' THEN 'piset'
+            WHEN f_major.Fmajor_name = 'การศึกษาตลอดชีวิต' THEN 'cheewit'
+            WHEN f_major.Fmajor_name = 'การศึกษาเพื่อพัฒนาชุมชน' THEN 'chumchon'
+            WHEN f_major.Fmajor_name = 'คุณครู' THEN 'kru' ELSE 'admin'
+        END kon
+        FROM 
+            user_nisit
+        Join f_major ON 
+            f_major.Fmajor_id = user_nisit.Fmajor_id
+        GROUP BY
+            user_nisit.Fmajor_id
+
+        ";
+        
+        $stmt=$this->pdo->query($sql);
+        // $stmt->execute([$st_id]);
+        $data = $stmt->fetchAll();
+        return  $data;
+
+    }
+
 }
 ?>

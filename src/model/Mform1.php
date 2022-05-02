@@ -33,6 +33,31 @@ class Mform1 extends Db {
 
     }
 
+    public function getformadmin1(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+            SELECT 
+                f_round.Fr_id,
+                f_round.Round_id,
+                f_round.ST_id,
+                f_round.Smajor_id,
+                s_major.Smajor_name AS S_name,
+                f_round.Ffile_id
+            FROM 
+                f_round
+            LEFT JOIN s_major  ON
+                f_round.Smajor_id = s_major.Smajor_id
+            ORDER BY
+                f_round.ST_id
+                
+        ";
+        $stmt=$this->pdo->query($sql);
+        // $stmt->execute([$st_id]);
+        $data = $stmt->fetchAll();
+        return  $data;
+
+    }
+
     public function addform1($form){
         $sql="
             INSERT INTO f_round ( 
@@ -102,27 +127,31 @@ class Mform1 extends Db {
         return true;
     }
 
-    // public function groupRequest(){
-    //     //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
-    //     $sql ="
-    //     SELECT 
-    //         count(request.R_id) as val, 
-    //         request_type.Type_name,
-    //         CASE WHEN request_type.Type_name = 'การใช้โปรแกรม' THEN 'program'ELSE 'tidto' 
-    //     END rnewname
-    //     FROM 
-    //         request
-    //     Join request_type ON 
-    //         request_type.R_type = request.R_type 
-    //     GROUP BY 
-    //         request.R_type
-    //     ";
+    public function groupround1(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+        SELECT 
+            count(f_round.Fr_id) as val, 
+            s_major.Smajor_name,
+            CASE WHEN s_major.Smajor_name = 'การศึกษาปฐมวัย' THEN 'Tomwai'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาไทย' THEN 'Thai'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาอังกฤษ' THEN 'English'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาสังคม' THEN 'Social'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้คณิตศาสตร์' THEN 'Math'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้วิทยาศาสตร์' THEN 'Sci' ELSE 'Comp'
+        END robti1
+        FROM 
+            f_round
+        LEFT Join s_major ON 
+            s_major.Smajor_id = f_round.Smajor_id
+        GROUP BY
+            f_round.Smajor_id
+        ";
         
-    //     $stmt=$this->pdo->query($sql);
-    //     // $stmt->execute([$st_id]);
-    //     $data = $stmt->fetchAll();
-    //     return  $data;
+        $stmt=$this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return  $data;
 
-    // }
-};
+    }
+}
 ?>

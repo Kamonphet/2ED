@@ -33,6 +33,30 @@ class Mrequest extends Db {
 
     }
 
+    public function getRequestadmin(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+            SELECT 
+                request.R_id,
+                request.R_date,
+                request.ST_id,
+                request.R_type,
+                request_type.Type_name AS Type,
+                request.R_detail
+            FROM 
+                request
+            LEFT JOIN request_type ON
+                request.R_type = request_type.R_type
+                
+
+        ";
+        $stmt=$this->pdo->query($sql);
+        // $stmt->execute([$st_id]);
+        $data = $stmt->fetchAll();
+        return  $data;
+
+    }
+
     public function addrequest($req){
         $sql="
             INSERT INTO request ( 
@@ -130,30 +154,6 @@ class Mrequest extends Db {
 
     }
 
-
-    // public function groupround(){
-    //     //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
-    //     $sql ="
-    //     SELECT 
-    //         count(f_round.F_id) as val, 
-    //         s_major.Smajor_name,
-    //         CASE WHEN s_major.Smajor_name = 'การศึกษาปฐมวัย' THEN 'pathomwai'
-    //         WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาไทย' THEN 'pathomwai'
-    //         WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาสังคม' THEN 'pathomwai'ELSE 'ETC'
-    //     END robti1
-    //     FROM 
-    //         f_round
-    //     Join s_major ON 
-    //         s_major.Smajor_id = f_round.Smajor_id
-    //     GROUP BY
-    //         f_round.Smajor_id
-    //     ";
-        
-    //     $stmt=$this->pdo->query($sql);
-    //     $data = $stmt->fetchAll();
-    //     return  $data;
-
-    // }
 }
 
 class Trequest extends Db{

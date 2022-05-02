@@ -41,6 +41,40 @@ class Mform2 extends Db {
 
     }
 
+    public function getformadmin2(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+            SELECT 
+                s_round.Sr_id,
+                s_round.Round_id,
+                s_round.ST_id,
+                s_round.Smajor_id,
+                s_major.Smajor_name AS S_name,
+                s_round.Thai,
+                s_round.Social,
+                s_round.English,
+                s_round.Math1,
+                s_round.Math2,
+                s_round.Physic,
+                s_round.Chemistry,
+                s_round.Biology,
+                s_round.Science
+            FROM 
+                s_round
+            LEFT JOIN s_major  ON
+                s_round.Smajor_id = s_major.Smajor_id
+            ORDER BY
+                s_round.ST_id
+                
+
+        ";
+        $stmt=$this->pdo->query($sql);
+        // $stmt->execute([$st_id]);
+        $data = $stmt->fetchAll();
+        return  $data;
+
+    }
+
     public function addform2($form){
         $sql="
             INSERT INTO s_round ( 
@@ -123,18 +157,17 @@ class Mform2 extends Db {
     public function updateform2($formbyid){
         $sql="
             UPDATE s_round SET
-                s_round.Round_id, =:s_round.Round_id,
-                s_round.ST_id, =:s_round.ST_id,
-                s_round.Smajor_id, =:s_round.Smajor_id,
-                s_round.Thai, =:s_round.Thai,
-                s_round.Social, =:s_round.Social,
-                s_round.English, =:s_round.English,
-                s_round.Math1, =:s_round.Math1,
-                s_round.Math2, =:s_round.Math2,
-                s_round.Physic, =:s_round.Physic,
-                s_round.Chemistry, =:s_round.Chemistry,
-                s_round.Biology, =:s_round.Biology,
-                s_round.Science =:s_round.Science
+                ST_id = :ST_id,
+                Smajor_id = :Smajor_id,
+                Thai = :Thai,
+                Social = :Social,
+                English = :English,
+                Math1 = :Math1,
+                Math2 = :Math2,
+                Physic = :Physic,
+                Chemistry = :Chemistry,
+                Biology = :Biology,
+                Science = :Science
          
             WHERE Sr_id = :id
         ";
@@ -143,27 +176,31 @@ class Mform2 extends Db {
         return true;
     }
 
-    // public function groupRequest(){
-    //     //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
-    //     $sql ="
-    //     SELECT 
-    //         count(request.R_id) as val, 
-    //         request_type.Type_name,
-    //         CASE WHEN request_type.Type_name = 'การใช้โปรแกรม' THEN 'program'ELSE 'tidto' 
-    //     END rnewname
-    //     FROM 
-    //         request
-    //     Join request_type ON 
-    //         request_type.R_type = request.R_type 
-    //     GROUP BY 
-    //         request.R_type
-    //     ";
+    public function groupround2(){
+        //ส่งคำสั่งไปเรียกข้อมูลทั้งหมดของตารางเรียน
+        $sql ="
+        SELECT 
+            count(s_round.Sr_id) as val, 
+            s_major.Smajor_name,
+            CASE WHEN s_major.Smajor_name = 'การศึกษาปฐมวัย' THEN 'Tomwai'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาไทย' THEN 'Thai'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาอังกฤษ' THEN 'English'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้ภาษาสังคม' THEN 'Social'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้คณิตศาสตร์' THEN 'Math'
+            WHEN s_major.Smajor_name = 'การจัดการเรียนรู้วิทยาศาสตร์' THEN 'Sci' ELSE 'Comp'
+        END robti2
+        FROM 
+            s_round
+        Join s_major ON 
+            s_major.Smajor_id = s_round.Smajor_id
+        GROUP BY
+            s_round.Smajor_id
+        ";
         
-    //     $stmt=$this->pdo->query($sql);
-    //     // $stmt->execute([$st_id]);
-    //     $data = $stmt->fetchAll();
-    //     return  $data;
+        $stmt=$this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return  $data;
 
-    // }
+    }
 }
 ?>

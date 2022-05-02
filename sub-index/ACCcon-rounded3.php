@@ -25,11 +25,13 @@ $accObj = new MAcc;
 <body class="bg-teal-50">
     <?php require $_SERVER['DOCUMENT_ROOT'] . "/CED214/Index/navbar.php"; ?>
     <!-- component -->
+
     <?php if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
         echo '<div class="overflow-x-auto" style="padding: 1%;">';
     } else {
         echo '<div class="overflow-x-auto" style="padding: 13%;">';
     } ?>
+
     <div class="mt-9 flex items-center justify-center font-sans overflow-hidden">
         <div class="w-full lg:w-5/6">
             <h2 class="text-4xl font-medium text-center">ข้อมูลนิสิตที่สมัครในรอบที่ 3</h2>
@@ -38,17 +40,28 @@ $accObj = new MAcc;
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-center">ลำดับที่</th>
-                            <th class="py-3 px-6 text-center">รหัสนิสิต</th>
-                            <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับที่1</th>
-                            <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับที่2</th>
-                            <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับที่3</th>
+                            <?php if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
+                                echo '<th class="py-3 px-6 text-center">รหัสนิสิต</th>';
+                            } ?>
+                            <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับ 1</th>
+                            <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับ 2</th>
+                            <th class="py-3 px-6 text-center">เอกที่สมัคร อันดับ 3</th>
                             <th class="py-3 px-6 text-center">สถานะ</th>
-                            <th class="py-3 px-6 text-center">จัดการ</th>
+                            <th class="py-3 px-6 text-center">การยืนยันสิทธิ์</th>
+                            <?php if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
+                                echo '<th class="py-3 px-6 text-center">จัดการ</th>';
+                            } ?>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
                         <?php
-                        $acc = $accObj->getaccadmin3();
+
+                        if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
+                            $acc = $accObj->getaccconadmin3();
+                        } else {
+                            $acc = $accObj->getAcccon3($_SESSION['ST_id']);
+                        }
+
                         $n = 0;
                         foreach ($acc as $ac) {
                             $n++;
@@ -87,36 +100,49 @@ $accObj = new MAcc;
                             echo "
                                     <tr class='border-b border-gray-200 bg-gray-50 hover:bg-gray-100'>
                                         <td class='py-3 px-6 text-center'>{$n}</td>
-                                        <td class='py-3 px-6 text-center'>{$ac['ST_id']}</td>
+                                ";
+                            if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
+                                echo "<td class='py-3 px-6 text-center'>{$ac['ST_id']}</td>";
+                            }
+                            echo "
                                         <td class='py-3 px-6 text-center'>{$ac['mname']}</td>
                                         <td class='py-3 px-6 text-center'>{$ac['Smajor_id2']}</td>
                                         <td class='py-3 px-6 text-center'>{$ac['Smajor_id3']}</td>
-                                        <td class='py-3 px-6 text-center' ><span class='bg-red-200 text-red-6 py-1 px-3 rounded-full text-xs'>{$ac['Status']}</span></td>
+                                        <td class='py-3 px-6 text-center'><span class='bg-blue-200 text-blue-6 py-1 px-3 rounded-full text-xs'>{$ac['Select_result']}</span></td>
+                                        <td class='py-3 px-6 text-center'><span class='bg-green-200 text-green-6 py-1 px-3 rounded-full text-xs'>{$ac['St_confirm']}</span></td>
+                                ";
+                            if ($_SESSION['Role'] == 'Teacher' or $_SESSION['Role'] == 'Admin') {
+                                echo "
+                                        
                                         <td class='py-3 px-6 text-center'>
                                             <div class='flex item-center justify-center'>
                                                 <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href=''>
+                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='{$ac['file']}' target='_blank' >
                                                         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
                                                         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
                                                     </svg>
                                                 </div>
                                                 <div class='w-4 mr-2 transform hover:text-purple-500 hover:scale-110'>
-                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saveacc.php?id={$ac['tr_id']}&action=edit3'>        
+                                                    <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><a href='../index/saveacc.php?id={$ac['fr_id']}&action=edit1'>        
 
                                                         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z' />
                                                     </svg>
                                                 </div>
                                             </div>
                                         </td>
+                                    ";
+                            };
+
+                            echo '
                                     </tr>
-                                ";
+                                ';
                         } ?>
                     </tbody>
                 </table>
 
             </div>
             <div class="px-4 py-3 text-right sm:px-0">
-                <a href="../Index/ACC.php" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
+                <a href="../Index/ACCcon.php" class="hover:-translate-y-1 duration-300 hover:scale-100 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</a>
             </div>
         </div>
 

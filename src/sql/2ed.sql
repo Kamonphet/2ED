@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 24, 2022 at 02:27 AM
+-- Generation Time: May 01, 2022 at 06:42 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -82,7 +82,14 @@ CREATE TABLE `f_round` (
 --
 
 INSERT INTO `f_round` (`Fr_id`, `Round_id`, `ST_id`, `Smajor_id`, `Ffile_id`) VALUES
-(22, 1, '63105010052', 7, '/CED214/upload/งานศิลปะที่ไม่มีชื่อ(1).pdf');
+(22, 1, '63105010052', 7, '/CED214/upload/งานศิลปะที่ไม่มีชื่อ(1).pdf'),
+(23, 1, '63105010050', 1, NULL),
+(24, 1, '63105010056', 2, NULL),
+(25, 1, '63105010052', 3, NULL),
+(26, 1, '63105010050', 4, NULL),
+(27, 1, '63105010052', 5, NULL),
+(28, 1, '63105010052', 6, NULL),
+(29, 1, '63105010065', 7, NULL);
 
 -- --------------------------------------------------------
 
@@ -106,10 +113,10 @@ INSERT INTO `request` (`R_id`, `R_date`, `ST_id`, `R_type`, `R_detail`) VALUES
 (2, '2022-04-02', '63105010052', 1, 'op'),
 (7, '2022-04-03', '63105010050', 1, 'uyikyukyu'),
 (8, '2022-04-03', '63105010052', 2, 'าส้่ส่า'),
-(11, '2022-04-02', '63105010052', 1, 'iiiiii'),
-(15, '2022-03-29', '631010052', 1, 'gjhjgjhgjhj'),
+(11, '2022-04-02', '63105010052', 4, 'iiiiii'),
+(15, '2022-03-29', '631010052', 1, 'gjhjgjrfffffffffffffhgjhj'),
 (16, '2022-04-01', '6310521', 1, 'm;.;,m.;lk;'),
-(17, '2022-04-23', '63105010052', 2, 'tthfghgfhft');
+(17, '2022-04-23', '63105010052', 3, 'tthfghgfhft');
 
 -- --------------------------------------------------------
 
@@ -128,7 +135,9 @@ CREATE TABLE `request_type` (
 
 INSERT INTO `request_type` (`R_type`, `Type_name`) VALUES
 (1, 'การใช้โปรแกรม'),
-(2, 'ติดต่อเจ้าหน้าที่');
+(2, 'ติดต่อเจ้าหน้าที่'),
+(3, 'แก้ไขข้อมูลส่วนตัว'),
+(4, 'อื่น ๆ');
 
 -- --------------------------------------------------------
 
@@ -215,26 +224,14 @@ CREATE TABLE `s_round` (
 --
 
 INSERT INTO `s_round` (`Sr_id`, `Round_id`, `ST_id`, `Smajor_id`, `Thai`, `Social`, `English`, `Math1`, `Math2`, `Physic`, `Chemistry`, `Biology`, `Science`) VALUES
-(2, 2, '63105010052', 6, 0, 21, 22, 0, 0, 22, 0, 22, 22);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_rangera_date`
---
-
-CREATE TABLE `tbl_rangera_date` (
-  `Ra_Date` date NOT NULL,
-  `Ra_Range` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_rangera_date`
---
-
-INSERT INTO `tbl_rangera_date` (`Ra_Date`, `Ra_Range`) VALUES
-('2022-04-19', '10.20'),
-('2022-04-20', '11.50');
+(2, 2, '63105010052', 6, 0, 21, 22, 0, 0, 22, 0, 22, 22),
+(3, 2, '63105010052', 1, 12, 45, 15, 47, 89, 52, 0, 0, 0),
+(4, 2, '63105010052', 2, 0, 0, 0, 45, 52, 0, 0, 0, 0),
+(5, 2, '63105010065', 3, 55, 45, 52, 0, 0, 0, 0, 0, 0),
+(6, 2, '63105010050', 4, 0, 0, 0, 4, 55, 63, 77, 85, 0),
+(7, 2, '63105010032', 5, 11, 24, 24, 22, 42, 24, 21, 0, 0),
+(8, 2, '63105010052', 6, 12, 22, 24, 86, 0, 0, 0, 0, 0),
+(9, 2, '63105010050', 7, 14, 74, 57, 63, 63, 0, 74, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -256,7 +253,15 @@ CREATE TABLE `t_round` (
 --
 
 INSERT INTO `t_round` (`Tr_id`, `Round_id`, `ST_id`, `Smajor_id1`, `Smajor_id2`, `Smajor_id3`) VALUES
-(1, 3, '63105010052', 1, 5, 7);
+(1, 3, '63105010052', 1, 5, 7),
+(2, 3, '63105010063', 7, 4, 1),
+(3, 3, '63105010064', 2, 7, 6),
+(4, 3, '63105010046', 3, 1, 5),
+(5, 3, '63105010089', 4, 6, 7),
+(6, 3, '63105010049', 5, 7, 3),
+(7, 3, '63105010021', 6, 7, 4),
+(8, 3, '63105010154', 7, 1, 2),
+(9, 3, '6310501134', 7, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -285,7 +290,15 @@ INSERT INTO `user_nisit` (`ST_id`, `Prefix`, `Sname`, `Lname`, `Sex`, `password`
 ('000000000001', 'นางสาว', 'เอ', 'บีซีดีอีเอฟจี', 'หญิง', '$2y$10$qBOJr3jdqX/GwbF5aycf0eUIrblm1fGBZXucnPhMy/IFEQIolUBWW', 'abcdefg@gmail.com', 999900909, 9, 'Teacher'),
 ('10000000000', NULL, 'Admin', 'Admin', NULL, '$2y$10$RwsDJxt92ugCYnW.1iO3eOS.mcEKZwIhyxEOAUmZFwnviT7Qu7rha', NULL, NULL, 10, 'Admin'),
 ('63105010050', 'นาย', 'เพชร', 'แก', 'ชาย', '$2y$10$5Lg1/Itd5/oY2HQdCzedO.ZnSLaB5YLc2GLmVPVKN9EyVBIe7cxWW', 'kamon.@gmail.com', 991857334, 3, 'Student'),
-('63105010052', 'นาย', 'กมลเพชร', 'สิริรัตนศักดิ์กุล', 'ชาย', '$2y$10$gM92XpFI1czKLKiDTgMfYOhmDGMo5ACMf47.VleThFFf/IMM9SdpS', 'kmp@gmail.com', 999999999, 3, 'Student');
+('63105010052', 'นาย', 'กมลเพชร', 'สิริรัตนศักดิ์กุล', 'ชาย', '$2y$10$gM92XpFI1czKLKiDTgMfYOhmDGMo5ACMf47.VleThFFf/IMM9SdpS', 'kmp@gmail.com', 999999999, 3, 'Student'),
+('63105010062', 'นาย', 'บี', 'บีซีดีอีเอฟจี', 'ชาย', '$2y$10$yN7Sg2AmkfXkuMxtxhmDHOikLabT7sR/VnLIFZtGR59TKNpQBX7LG', NULL, NULL, 1, 'Student'),
+('63105010063', 'นางสาว', 'ซี', 'ดีอีเอฟจี', 'หญิง', '$2y$10$CgQnASpiPtmJNlZCeLalneT6XQQWnwhFZP2lRqI6Tyt9w2JstayhG', NULL, NULL, 2, 'Student'),
+('63105010086', 'นาย', 'อี', 'อี', 'ชาย', '$2y$10$OerHKq7Sk9zJ5m9TGAZc6OBLFFuwciHBM1jGb7veg0OZuxFisAQjK', NULL, NULL, 4, 'Student'),
+('63105010096', 'นาย', 'ดี', 'ดี', 'ชาย', '$2y$10$SOPyjBArljA46V9IuseNHe9ewAPrgT/ofsWQNL./9I6ZCDV5xc3be', NULL, NULL, 5, 'Student'),
+('63105010246', 'นาย', 'จี', 'เอชไอ', 'ชาย', '$2y$10$Y166vpjRLJGa69OW/766GO6oFpkwgcopVyGvbWLQZbPppFV6H/W3e', NULL, NULL, 6, 'Student'),
+('6310501069', 'นางสาว', 'เค', 'เค', 'หญิง', '$2y$10$4YyGqkCkB9YHRqHYn/kjmOHmosU6IUbNzj/LIuaLvZ7Nd8B86ooIK', NULL, NULL, 7, 'Student'),
+('63105010789', 'นางสาว', 'เจ', 'เจ', 'หญิง', '$2y$10$sIZl7aq1pQTqy1Z4UcMh.OjYqGZi9knUAL3ocouVJGyRc6bk1sqFa', NULL, NULL, 8, 'Student'),
+('63105010963', 'นางสาว', 'ไอ', 'ไอ', 'หญิง', '$2y$10$7zX/TSRsbKRkgIpKM.HAMeARiYJ6fcHXTKnMF.gzETXfsVwSeQfou', NULL, NULL, 9, 'Student');
 
 --
 -- Indexes for dumped tables
@@ -372,7 +385,7 @@ ALTER TABLE `f_major`
 -- AUTO_INCREMENT for table `f_round`
 --
 ALTER TABLE `f_round`
-  MODIFY `Fr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'เลขที่สมัครรอบที่ 1', AUTO_INCREMENT=23;
+  MODIFY `Fr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'เลขที่สมัครรอบที่ 1', AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `request`
@@ -384,7 +397,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `request_type`
 --
 ALTER TABLE `request_type`
-  MODIFY `R_type` int(2) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ประเภทคำร้อง', AUTO_INCREMENT=3;
+  MODIFY `R_type` int(2) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ประเภทคำร้อง', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `round`
@@ -402,13 +415,13 @@ ALTER TABLE `s_major`
 -- AUTO_INCREMENT for table `s_round`
 --
 ALTER TABLE `s_round`
-  MODIFY `Sr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'เลขที่สมัครรอบที่ 2', AUTO_INCREMENT=3;
+  MODIFY `Sr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'เลขที่สมัครรอบที่ 2', AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `t_round`
 --
 ALTER TABLE `t_round`
-  MODIFY `Tr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'เลขที่สมัครรอบที่ 3', AUTO_INCREMENT=2;
+  MODIFY `Tr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'เลขที่สมัครรอบที่ 3', AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

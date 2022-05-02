@@ -17,19 +17,10 @@ if ($_REQUEST['action']=='delete2') {
     $form = $_REQUEST;
     unset($form['action']);
 
-    if($_FILES['File_name']['tmp_name']){
-        if ($_SERVER['DOCUMENT_ROOT']. $form['Ffile_id']){
-
-            unlink($_SERVER['DOCUMENT_ROOT']. $form['Ffile_id']);
-
-        }
-        $form['Ffile_id'] = $File_name;
-    };
     $form1Obj->updateform2($form);
 
 }elseif ($_REQUEST['action']=='add2') {
     $form = $_REQUEST;
-    print_r($form);
     
     unset($form['action']);
     unset($form['id']);
